@@ -9,4 +9,4 @@ class PortfolioConstructor:
         self.client_profile = ClientProfile.ClientProfile()
 
     def construct_portfolio(self):
-        print('Tester')
+        print('Constructing portfolio...')
