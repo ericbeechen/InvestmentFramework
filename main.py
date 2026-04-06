@@ -1,8 +1,11 @@
 import PortfolioConstructor
+import PortfolioReporter
 
 def main():
-    portfolio = PortfolioConstructor.PortfolioConstructor()
-    portfolio.construct_portfolio()
+    portfolio_constructor = PortfolioConstructor.PortfolioConstructor()
+    portfolio = portfolio_constructor.construct_portfolio()
+    portfolio_reporter = PortfolioReporter.PortfolioReporter()
+    portfolio_reporter.plot(portfolio)
 
 
 if __name__ == "__main__": 
