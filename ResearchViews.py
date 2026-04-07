@@ -1,25 +1,20 @@
-import os
 import numpy as np
 import pandas as pd
 
 class ResearchViews:
-    def __init__(self):
+    def __init__(self, output_file: str = f"yfinance_data/universe_5y.xlsx"):
         self.views: pd.DataFrame = pd.DataFrame()
+        self.download = pd.read_excel(output_file, index_col=0, parse_dates=True).iloc[1:]
 
     def test_views(self):
-        output_file = f"yfinance_data/universe_1y.xlsx"
-        download = pd.read_excel(output_file, index_col=0, parse_dates=True).iloc[1:]
+        dates = self.download.index
+        names = self.download.columns
 
-        dates = download.index
-        names = download.columns
-
-        test_names = pd.DataFrame(np.random.normal(size=download.shape), index=dates,columns=names)
+        test_names = pd.DataFrame(np.random.normal(size=self.download.shape), index=dates,columns=names)
 
         self.views = test_names
         # print(self.views)
         return test_names
-
-
-# view = ResearchViews()
-# testviews = view.test_views()
-# print(testviews)
+    
+    def views(self):
+        pass
