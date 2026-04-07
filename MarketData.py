@@ -15,7 +15,7 @@ class MarketData:
         self.securities = sp500_list
         return self.securities
 
-    def build_universe(self, period: str = "1y", file_path: str | None = None) -> pd.DataFrame:
+    def build_universe(self, period: str = "5y", file_path: str | None = None) -> pd.DataFrame:
         output_file = file_path or f"yfinance_data/universe_{period}.xlsx"
 
         if os.path.exists(output_file):
@@ -32,19 +32,15 @@ class MarketData:
 
         adj_close = download["Adj Close"]
 
-        if isinstance(adj_close, pd.Series):
-            col_name = self.securities[0] if len(self.securities) == 1 else "Adj Close"
-            sp500_df = adj_close.to_frame(name=col_name)
-        else:
-            sp500_df = adj_close
+        # col_name = self.securities[0] if len(self.securities) == 1 else "Adj Close"
+        sp500_df = adj_close
 
         sp500_df.to_excel(output_file)
         self.universe = sp500_df
         # print(f'Universe of assets: {universe}')
         return sp500_df
     
-    def universe_returns(self, universe):
-        
+    def universe_returns(self, universe: pd.DataFrame) -> pd.DataFrame:
         returns = universe.pct_change(fill_method=None).iloc[1:]
         self.returns = returns
         # Add ability to annualize returns
