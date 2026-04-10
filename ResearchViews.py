@@ -16,5 +16,8 @@ class ResearchViews:
         # print(self.views)
         return test_names
     
-    def views(self):
-        pass
+    def new_views(self, universe: pd.DataFrame) -> pd.DataFrame:
+        dates = universe.index
+        names = universe.columns
+
+        return universe

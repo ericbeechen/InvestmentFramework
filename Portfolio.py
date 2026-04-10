@@ -1,9 +1,9 @@
 import pandas as pd
-import ResearchViews
+from ResearchViews import ResearchViews
 from typing import Dict, List, Any
 
 class Portfolio:
-    def __init__(self, research: Any = ResearchViews.ResearchViews(), initial_cash: float = 1_000_000.0, cash_threshold: float = 0.01):
+    def __init__(self, research: Any = ResearchViews(), initial_cash: float = 1_000_000.0, cash_threshold: float = 0.01):
         self.initial_cash = initial_cash
         self.cash_threshold = cash_threshold * self.initial_cash
         self.research = research
