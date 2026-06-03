@@ -29,7 +29,7 @@ class MarketData:
         return self.universe
     
     def universe_returns(self):
-        self.returns = self.universe.pct_change()[1:] # drop the first row which will be NaN due to the pct_change calculation
+        self.returns = self.universe.pct_change(fill_method=None)[1:] # drop the first row which will be NaN due to the pct_change calculation
         return self.returns
 
 
