@@ -40,18 +40,9 @@ class MarketData:
         # print(f'Universe of assets: {universe}')
         return sp500_df
     
-<<<<<<< HEAD
     def universe_returns(self):
         self.returns = self.universe.pct_change(fill_method=None)[1:] # drop the first row which will be NaN due to the pct_change calculation
         return self.returns
-=======
-    def universe_returns(self, universe: pd.DataFrame) -> pd.DataFrame:
-        returns = universe.pct_change(fill_method=None).iloc[1:]
-        self.returns = returns
-        # Add ability to annualize returns
-        # print(f'Universe returns: {returns}')
-        return returns
->>>>>>> e37ebe8b81b5c1f098e7269f204f34bde8f100c9
 
 
     def get_stock(self, ticker, start, end):

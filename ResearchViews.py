@@ -1,10 +1,14 @@
+import os
 import numpy as np
 import pandas as pd
 
 class ResearchViews:
     def __init__(self, output_file: str = f"yfinance_data/universe_5y.xlsx"):
         self.views: pd.DataFrame = pd.DataFrame()
-        self.download = pd.read_excel(output_file, index_col=0, parse_dates=True).iloc[1:]
+        if output_file and os.path.exists(output_file):
+            self.download = pd.read_excel(output_file, index_col=0, parse_dates=True).iloc[1:]
+        else:
+            self.download = pd.DataFrame()
 
     def test_views(self):
         dates = self.download.index
